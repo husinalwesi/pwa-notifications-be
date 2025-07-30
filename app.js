@@ -20,7 +20,7 @@ document.getElementById('subscribe').addEventListener('click', async () => {
         applicationServerKey: applicationServerKey
     });
 
-    await fetch('/subscribe', {
+    await fetch('https://pwa-notification.onrender.com/subscribe', {
         method: 'POST',
         body: JSON.stringify(subscription),
         headers: {

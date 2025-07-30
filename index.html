@@ -17,7 +17,7 @@
       document
         .getElementById("sendNotification")
         .addEventListener("click", () => {
-          fetch("/sendNotification", {
+          fetch("https://pwa-notification.onrender.com/sendNotification", {
             method: "POST",
             body: JSON.stringify({
               title: "Hello!",
