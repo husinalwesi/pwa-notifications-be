@@ -8,7 +8,35 @@
   </head>
   <body>
     <h1>PWA Push Demo</h1>
+
     <button id="subscribe">Subscribe for Notifications</button>
+    <button id="sendNotification">Send Notification</button>
+
     <script src="app.js"></script>
+    <script>
+      document
+        .getElementById("sendNotification")
+        .addEventListener("click", () => {
+          fetch("/sendNotification", {
+            method: "POST",
+            body: JSON.stringify({
+              title: "Hello!",
+              body: "This is your first push notification 🎉",
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((response) =>
+              response.ok
+                ? alert("Notification sent!")
+                : alert("Failed to send")
+            )
+            .catch((error) => {
+              console.error("Error sending notification:", error);
+              alert("Error sending notification");
+            });
+        });
+    </script>
   </body>
 </html>
