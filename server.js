@@ -7,8 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, './')));
 
-const publicVapidKey = '<YOUR_PUBLIC_VAPID_KEY>';
-const privateVapidKey = '<YOUR_PRIVATE_VAPID_KEY>';
+const publicVapidKey = 'BPMFx6LM8kptb9EMgVbcuFo1qtgqks6d29CS5XW-xHOAMeAGCUhTKIt7mZ9fSnUN-SIKCrx9DJzOdrtT8NLW7XY';
+const privateVapidKey = 'WZ3HyWcJcM5dM6DKzBbZfpIg3L6zZK8NMWgK6xiz8cQ';
 
 webpush.setVapidDetails('mailto:test@example.com', publicVapidKey, privateVapidKey);
 

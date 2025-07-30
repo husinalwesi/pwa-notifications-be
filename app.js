@@ -12,9 +12,12 @@ document.getElementById('subscribe').addEventListener('click', async () => {
     }
 
     const swReg = await navigator.serviceWorker.ready;
+
+    const applicationServerKey = urlBase64ToUint8Array('BPMFx6LM8kptb9EMgVbcuFo1qtgqks6d29CS5XW-xHOAMeAGCUhTKIt7mZ9fSnUN-SIKCrx9DJzOdrtT8NLW7XY');
+
     const subscription = await swReg.pushManager.subscribe({
         userVisibleOnly: true,
-        applicationServerKey: '<YOUR_PUBLIC_VAPID_KEY>'
+        applicationServerKey: applicationServerKey
     });
 
     await fetch('/subscribe', {
@@ -27,3 +30,19 @@ document.getElementById('subscribe').addEventListener('click', async () => {
 
     alert('Subscribed!');
 });
+
+
+function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+        .replace(/\-/g, '+')
+        .replace(/_/g, '/');
+
+    const rawData = atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+
+    for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+}
