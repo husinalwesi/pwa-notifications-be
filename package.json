@@ -1,0 +1,12 @@
+{
+    "name": "pwa-push-demo",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.18.0",
+        "web-push": "^3.4.5"
+    }
+}
