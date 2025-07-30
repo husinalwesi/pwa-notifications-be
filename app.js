@@ -13,7 +13,7 @@ document.getElementById('subscribe').addEventListener('click', async () => {
 
     const swReg = await navigator.serviceWorker.ready;
 
-    const applicationServerKey = urlBase64ToUint8Array('BPMFx6LM8kptb9EMgVbcuFo1qtgqks6d29CS5XW-xHOAMeAGCUhTKIt7mZ9fSnUN-SIKCrx9DJzOdrtT8NLW7XY');
+    const applicationServerKey = urlBase64ToUint8Array('BMHHx70B6PTXRkhgu32lSVMWbYlMtiaeJ41c-ZCS9p4240vnqlgYrAXfLW0wET9chC580-QfJU1by_02McfhYJI');
 
     const subscription = await swReg.pushManager.subscribe({
         userVisibleOnly: true,

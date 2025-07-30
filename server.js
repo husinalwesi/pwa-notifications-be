@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 
 let subscriptions = [];
 
-const publicVapidKey = 'BPMFx6LM8kptb9EMgVbcuFo1qtgqks6d29CS5XW-xHOAMeAGCUhTKIt7mZ9fSnUN-SIKCrx9DJzOdrtT8NLW7XY';
-const privateVapidKey = 'WZ3HyWcJcM5dM6DKzBbZfpIg3L6zZK8NMWgK6xiz8cQ';
+const publicVapidKey = 'BMHHx70B6PTXRkhgu32lSVMWbYlMtiaeJ41c-ZCS9p4240vnqlgYrAXfLW0wET9chC580-QfJU1by_02McfhYJI';
+const privateVapidKey = 'Mj6pkdREfFRj-ANDJIjbcOwJjwuUqy50NRI14f2MIZQ';
 
 webpush.setVapidDetails('mailto:test@example.com', publicVapidKey, privateVapidKey);
 
