@@ -25,12 +25,7 @@ app.use(cors({
 app.use(bodyParser.json());
 
 let subscriptions = [];
-let messages = [
-    {
-        title: 'ccc',
-        body: 'sdf'
-    }
-];
+let messages = [];
 
 const publicVapidKey = 'BMHHx70B6PTXRkhgu32lSVMWbYlMtiaeJ41c-ZCS9p4240vnqlgYrAXfLW0wET9chC580-QfJU1by_02McfhYJI';
 const privateVapidKey = 'Mj6pkdREfFRj-ANDJIjbcOwJjwuUqy50NRI14f2MIZQ';
