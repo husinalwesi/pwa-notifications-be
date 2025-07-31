@@ -25,6 +25,12 @@ app.use(cors({
 app.use(bodyParser.json());
 
 let subscriptions = [];
+let messages = [
+    {
+        title: 'ccc',
+        body: 'sdf'
+    }
+];
 
 const publicVapidKey = 'BMHHx70B6PTXRkhgu32lSVMWbYlMtiaeJ41c-ZCS9p4240vnqlgYrAXfLW0wET9chC580-QfJU1by_02McfhYJI';
 const privateVapidKey = 'Mj6pkdREfFRj-ANDJIjbcOwJjwuUqy50NRI14f2MIZQ';
@@ -37,11 +43,19 @@ app.post('/subscribe', (req, res) => {
     res.status(201).json({});
 });
 
+app.get('/notifications', async (req, res) => {
+    // Example: Return only the last 10 messages
+    const latest = messages.slice(-10).reverse(); // reverse to get newest first
+    res.status(200).json(latest);
+});
+
 app.post('/sendNotification', async (req, res) => {
     const payload = JSON.stringify({
         title: req.body.title,
         body: req.body.body,
     });
+
+    messages.push({ title: req.body.title, body: req.body.body })
 
     for (const sub of subscriptions) {
         try {
