@@ -6,9 +6,21 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // ✅ Allow requests from your frontend domain
+const allowedOrigins = [
+    'https://pwa-notifications-fe-receiver.onrender.com',
+    'https://pwa-notifications-fe-sender.onrender.com',
+];
+
 app.use(cors({
-  origin: 'https://pwa-notification-frontend.onrender.com', // e.g., 'https://my-pwa-frontend.onrender.com'
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
 }));
+
 
 app.use(bodyParser.json());
 
