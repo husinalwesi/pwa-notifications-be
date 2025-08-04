@@ -56,6 +56,12 @@ app.get('/subscriptions', (req, res) => {
     res.status(200).json(subscriptions);
 });
 
+app.post('/subscribe-emptify', (req, res) => {
+    subscriptions = [];
+    saveSubscriptionsToFile();
+    res.status(201).json({});
+});
+
 app.post('/subscribe', (req, res) => {
     const subscription = req.body;
 
@@ -80,7 +86,7 @@ app.post('/sendNotification', async (req, res) => {
         body: req.body.body,
     });
 
-    messages.push({ title: req.body.title, body: req.body.body });
+    messages.push({ title: req.body.title, body: req.body.body, timestamp: new Date().toISOString() });
 
     for (const sub of subscriptions) {
         try {
