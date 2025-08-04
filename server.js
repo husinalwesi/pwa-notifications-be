@@ -56,7 +56,7 @@ app.get('/subscriptions', (req, res) => {
     res.status(200).json(subscriptions);
 });
 
-app.post('/subscribe-emptify', (req, res) => {
+app.post('/subscribe-emptify', (req, res) => { 
     subscriptions = [];
     saveSubscriptionsToFile();
     res.status(201).json({});
