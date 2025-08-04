@@ -52,6 +52,10 @@ function saveSubscriptionsToFile() {
     });
 }
 
+app.get('/subscriptions', (req, res) => {
+    res.status(200).json(subscriptions);
+});
+
 app.post('/subscribe', (req, res) => {
     const subscription = req.body;
 
