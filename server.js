@@ -4,7 +4,7 @@ const webpush = require('web-push');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-
+const basePath = '/backend';
 const app = express();
 
 const subscriptionsFile = path.join(__dirname, 'subscriptions.json');
@@ -53,17 +53,26 @@ function saveSubscriptionsToFile() {
     });
 }
 
-app.get('/subscriptions', (req, res) => {
+app.get(`${basePath}/test`, (req, res) => {
+    //app.get('/test', (req, res) => {
+    res.status(200).json([]);
+});
+
+app.get(`${basePath}/subscriptions`, (req, res) => {
+    // app.get('/subscriptions', (req, res) => {
     res.status(200).json(subscriptions);
 });
 
-app.post('/subscribe-emptify', (req, res) => { 
+app.post(`${basePath}/subscribe-emptify`, (req, res) => {
+    // app.post('/subscribe-emptify', (req, res) => {
     subscriptions = [];
     saveSubscriptionsToFile();
     res.status(201).json({});
 });
 
-app.post('/subscribe', (req, res) => {
+
+app.post(`${basePath}/subscribe`, (req, res) => {
+    // app.post('/subscribe', (req, res) => {
     const subscription = req.body;
 
     // Avoid duplicates
@@ -76,12 +85,15 @@ app.post('/subscribe', (req, res) => {
     res.status(201).json({});
 });
 
-app.get('/notifications', async (req, res) => {
+
+app.get(`${basePath}/notifications`, (req, res) => {
+    // app.get('/notifications', async (req, res) => {
     const latest = messages.slice(-10).reverse();
     res.status(200).json(latest);
 });
 
-app.post('/sendNotification', async (req, res) => {
+app.post(`${basePath}/sendNotification`, async (req, res) => {
+    // app.post('/sendNotification', async (req, res) => {
     const payload = JSON.stringify({
         title: req.body.title,
         body: req.body.body,
@@ -100,4 +112,6 @@ app.post('/sendNotification', async (req, res) => {
     res.sendStatus(200);
 });
 
-app.listen(3000, () => console.log('Server started on port 3000'));
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log('Server started on port 3000'));
