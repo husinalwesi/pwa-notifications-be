@@ -10,8 +10,9 @@ const app = express();
 const subscriptionsFile = path.join(__dirname, 'subscriptions.json');
 
 const allowedOrigins = [
-    'https://pwa-notifications-fe-receiver.onrender.com',
-    'https://pwa-notifications-fe-sender.onrender.com',
+    'https://doorapp.ihorizons.org',
+    // 'https://pwa-notifications-fe-receiver.onrender.com',
+    // 'https://pwa-notifications-fe-sender.onrender.com',
 ];
 
 app.use(cors({
