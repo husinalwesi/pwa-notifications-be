@@ -79,7 +79,7 @@ app.post(`${basePath}/subscribe`, (req, res) => {
     const team = req.body.team;
     const innerteam = req.body.innerteam;
 
-    const subscription = { ...subscriptionData, ...team, ...innerteam };
+    const subscription = { ...subscriptionData, ...{ team }, ...{ innerteam } };
 
     // Avoid duplicates
     const exists = subscriptions.find(sub => JSON.stringify(sub) === JSON.stringify(subscription));
