@@ -113,9 +113,13 @@ app.post(`${basePath}/getmysubscribtion`, (req, res) => {
 
 
 app.get(`${basePath}/notifications`, (req, res) => {
-    // app.get('/notifications', async (req, res) => {
-    const latest = messages.slice(-10).reverse();
-    res.status(200).json(latest);
+    const { team, innerteam } = req.query;
+    // const latest = messages.slice(-10).reverse();
+    // res.status(200).json(latest);
+    res.status(200).json({
+        team: team,
+        innerTeam: innerteam
+    });
 });
 
 app.post(`${basePath}/sendNotification`, async (req, res) => {
