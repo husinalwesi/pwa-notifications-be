@@ -116,7 +116,7 @@ app.post(`${basePath}/getmysubscribtion`, (req, res) => {
 app.get(`${basePath}/notifications`, (req, res) => {
     const { team, innerteam } = req.query;
 
-    const filteredMsgs = messages.filter((item) => item.team === team && (item.innerteam === 'all' ? true : item.innerteam === innerteam));
+    const filteredMsgs = messages.filter((item) => item.team === team && (item.innerteam === 'all' || item.innerteam === innerteam));
 
     const latest = filteredMsgs.slice(-10).reverse();
     res.status(200).json(latest);
