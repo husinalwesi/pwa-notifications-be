@@ -111,7 +111,7 @@ app.post(`${basePath}/getmysubscribtion`, (req, res) => {
 });
 
 
-app.get(`${basePath}/notifications`, (req, res) => {
+app.get(`${basePath}/notificationsquery`, (req, res) => {
     const { team, innerteam } = req.query;
     res.status(200).json({
         team: team,
