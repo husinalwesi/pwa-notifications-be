@@ -122,6 +122,10 @@ app.get(`${basePath}/notifications`, (req, res) => {
     res.status(200).json(latest);
 });
 
+app.get(`${basePath}/allnotifications`, (req, res) => {
+    res.status(200).json(messages);
+});
+
 app.post(`${basePath}/sendNotification`, async (req, res) => {
     // app.post('/sendNotification', async (req, res) => {
     const payload = JSON.stringify({
