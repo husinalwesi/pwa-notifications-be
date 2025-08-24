@@ -4,15 +4,16 @@ const webpush = require('web-push');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
-const basePath = '/backend';
+const basePath = '';
+// const basePath = '/backend';
 const app = express();
 
 const subscriptionsFile = path.join(__dirname, 'subscriptions.json');
 
 const allowedOrigins = [
     'https://doorapp.ihorizons.org',
-    // 'https://pwa-notifications-fe-receiver.onrender.com',
-    // 'https://pwa-notifications-fe-sender.onrender.com',
+    'https://pwa-notifications-fe-receiver.onrender.com',
+    'https://pwa-notifications-fe-sender.onrender.com',
 ];
 
 app.use(cors({
@@ -73,7 +74,12 @@ app.post(`${basePath}/subscribe-emptify`, (req, res) => {
 
 app.post(`${basePath}/subscribe`, (req, res) => {
     // app.post('/subscribe', (req, res) => {
-    const subscription = req.body;
+    const subscriptionData = req.body.subscription;
+
+    const team = req.body.team;
+    const innerteam = req.body.innerteam;
+
+    const subscription = { ...subscriptionData, ...team, ...innerteam };
 
     // Avoid duplicates
     const exists = subscriptions.find(sub => JSON.stringify(sub) === JSON.stringify(subscription));
