@@ -133,7 +133,9 @@ app.post(`${basePath}/sendNotification`, async (req, res) => {
 
     messages.push({ title: req.body.title, body: req.body.body, timestamp: new Date().toISOString(), team: team, innerteam: innerteam });
 
-    for (const sub of subscriptions) {
+    const filtteredSubscriptions = subscriptions.filter((item) => item.team === team && (item.innerteam === 'all' || item.innerteam === innerteam));
+    for (const sub of filtteredSubscriptions) {
+        // here to filter subscribtions
         try {
             await webpush.sendNotification(sub, payload);
         } catch (err) {
