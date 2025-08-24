@@ -102,7 +102,7 @@ function getOriginalSubscribtion(data) {
 
 app.post(`${basePath}/getmysubscribtion`, (req, res) => {
     const subscription = req.body;
-    const exists = subscriptions.find(sub => JSON.stringify(getOriginalSubscribtion(sub)) === JSON.stringify(subscription));
+    const exists = subscriptions.find(sub => sub.endpoint.toLowerCase() === subscription.endpoint.toLowerCase() && sub.keys.p256dh.toLowerCase() === subscription.keys.p256dh.toLowerCase() && sub.keys.auth.toLowerCase() === subscription.keys.auth.toLowerCase());
     if (exists) {
         res.status(200).json({ ...{ success: true }, ...exists });
     }
