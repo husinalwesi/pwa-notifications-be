@@ -114,12 +114,11 @@ app.post(`${basePath}/getmysubscribtion`, (req, res) => {
 
 app.get(`${basePath}/notifications`, (req, res) => {
     const { team, innerteam } = req.query;
-    // const latest = messages.slice(-10).reverse();
-    // res.status(200).json(latest);
-    res.status(200).json({
-        team: team,
-        innerTeam: innerteam
-    });
+
+    const filteredMsgs = messages.filter((item) => item.team === team && item.innerteam === innerteam);
+
+    const latest = filteredMsgs.slice(-10).reverse();
+    res.status(200).json(latest);
 });
 
 app.post(`${basePath}/sendNotification`, async (req, res) => {
@@ -129,7 +128,10 @@ app.post(`${basePath}/sendNotification`, async (req, res) => {
         body: req.body.body,
     });
 
-    messages.push({ title: req.body.title, body: req.body.body, timestamp: new Date().toISOString() });
+    const team = req.body.team;
+    const innerteam = req.body.innerteam;
+
+    messages.push({ title: req.body.title, body: req.body.body, timestamp: new Date().toISOString(), team: team, innerteam: innerteam });
 
     for (const sub of subscriptions) {
         try {
