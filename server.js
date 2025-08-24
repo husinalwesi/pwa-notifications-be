@@ -88,8 +88,28 @@ app.post(`${basePath}/subscribe`, (req, res) => {
         saveSubscriptionsToFile(); // Save to file
     }
 
-    res.status(201).json({});
+    res.status(201).json({ ...{ success: true }, ...subscription });
 });
+
+function getOriginalSubscribtion(data) {
+    return {
+        "endpoint": data.endpoint,
+        "expirationTime": null,
+        "keys": data.keys
+    };
+}
+
+app.post(`${basePath}/getmysubscribtion`, (req, res) => {
+    const subscription = req.body;
+    const exists = subscriptions.find(sub => JSON.stringify(getOriginalSubscribtion(sub)) === JSON.stringify(subscription));
+    if (exists) {
+        res.status(200).json({ ...{ success: true }, ...exists });
+    }
+
+    res.status(200).json({ success: false });
+});
+
+
 
 
 app.get(`${basePath}/notifications`, (req, res) => {
