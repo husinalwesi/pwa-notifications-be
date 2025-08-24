@@ -14,6 +14,7 @@ const allowedOrigins = [
     'https://doorapp.ihorizons.org',
     'https://pwa-notifications-fe-receiver.onrender.com',
     'https://pwa-notifications-fe-sender.onrender.com',
+    'https://pwa-notifications-fe-receiver-people.onrender.com/'
 ];
 
 app.use(cors({
